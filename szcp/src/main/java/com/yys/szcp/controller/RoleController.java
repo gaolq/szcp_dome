@@ -7,6 +7,7 @@ import com.yys.szcp.entity.DbRole;
 import com.yys.szcp.service.DbRoleService;
 import com.yys.szcp.utils.ResultUtil;
 import com.yys.szcp.utils.StringISNULLUtil;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import java.util.Map;
  * Date: 2019/06/25 16:37:30
  * Email: 1095737364@qq.com
  */
+@Api(tags = "角色相关")
 @Controller
 @RequestMapping("sys/role/")
 public class RoleController {

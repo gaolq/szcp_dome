@@ -12,11 +12,14 @@ import com.yys.szcp.service.DbMenuService;
 import com.yys.szcp.utils.IViewIcon;
 import com.yys.szcp.utils.ResultUtil;
 import com.yys.szcp.utils.StringISNULLUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +33,7 @@ import java.util.Map;
  * Date: 2019/06/25 19:37:54
  * Email: 1095737364@qq.com
  */
+@Api(tags = "菜单模块")
 @Controller
 @RequestMapping("sys/menu/")
 public class MenuController {
@@ -44,7 +48,8 @@ public class MenuController {
      * @param menu
      * @return
      */
-    @RequestMapping("addMenu")
+    @ApiImplicitParam(name = "menu",value = "菜单json字符串",required = true)
+    @RequestMapping(value = "addMenu",method = RequestMethod.GET)
     @ResponseBody
     public ResultUtil addMenu(HttpServletRequest request, String menu) {
         try {

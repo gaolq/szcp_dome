@@ -8,6 +8,8 @@ import com.yys.szcp.entityVo.OrganToUserTree;
 import com.yys.szcp.service.DbOrganService;
 import com.yys.szcp.utils.ResultUtil;
 import com.yys.szcp.utils.StringISNULLUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,7 @@ import java.util.Map;
  * Date: 2019/06/25 17:37:12
  * Email: 1095737364@qq.com
  */
+@Api(tags = "部门相关")
 @Controller
 @RequestMapping("sys/organ/")
 public class OrganController {
@@ -44,6 +47,7 @@ public class OrganController {
      * @param organ
      * @return
      */
+    @ApiImplicitParam(name = "organ",value = "组织集合json字符串",required = true)
     @RequestMapping("addOrgan")
     @ResponseBody
     public ResultUtil addOrgan(HttpServletRequest request, String organ) {

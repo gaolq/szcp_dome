@@ -15,11 +15,15 @@ import com.yys.szcp.service.DbOrganService;
 import com.yys.szcp.utils.MD5;
 import com.yys.szcp.utils.ResultUtil;
 import com.yys.szcp.utils.StringISNULLUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Api(tags = "用户模块")
 @Controller
 @RequestMapping("sys/admin")
 public class AdminController {
@@ -50,7 +54,11 @@ public class AdminController {
      * @param request
      * @return
      */
-    @RequestMapping("/login")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username",value = "账号",required = true),
+            @ApiImplicitParam(name = "password",value = "密码",required = true)
+    })
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
     @JwtIgnore // 加此注解, 请求不做token验证
     @ResponseBody
     public ResultUtil login(String username, String password, HttpServletRequest request) {
