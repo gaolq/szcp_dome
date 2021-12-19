@@ -70,8 +70,8 @@ public class AdminUserServiceImpl implements DbAdminUserService {
 	}
 
 	@Override
-	public List<DbAdminUser> findAdminUserByAdminName(Integer adminUserId,String username) {
-		return adminUserMapper.findAdminUserByAdminName(adminUserId,username);
+	public List<DbAdminUser> findAdminUserByAdminName(Integer adminUserId,String adminName) {
+		return adminUserMapper.findAdminUserByAdminName(adminUserId,adminName);
 	}
 
 	@Override

@@ -32,6 +32,6 @@ public interface DbAdminUserService {
     int deleteAdminUser(DbAdminUser adminUser);
 
     //通过登陆名称查询单个管理员用户-->
-    List<DbAdminUser> findAdminUserByAdminName(Integer adminUserId, String username);
+    List<DbAdminUser> findAdminUserByAdminName(Integer adminUserId, String adminName);
 
 }

@@ -8,11 +8,13 @@ import com.yys.szcp.service.DbRoleService;
 import com.yys.szcp.utils.ResultUtil;
 import com.yys.szcp.utils.StringISNULLUtil;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +47,8 @@ public class RoleController {
      * @param role
      * @return
      */
-    @RequestMapping("addRole")
+    @ApiOperation("添加角色")
+    @RequestMapping(value = "addRole",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil addRole(HttpServletRequest request, String role) {
 
@@ -78,7 +81,8 @@ public class RoleController {
      * @param roleId
      * @return
      */
-    @RequestMapping("findRoleById")
+    @ApiOperation("根据id查询角色")
+    @RequestMapping(value = "findRoleById",method = RequestMethod.GET)
     @ResponseBody
     public ResultUtil findRoleById(HttpServletRequest request, Integer roleId) {
         try {
@@ -98,7 +102,8 @@ public class RoleController {
      * @param role
      * @return
      */
-    @RequestMapping("updateRole")
+    @ApiOperation("更新角色")
+    @RequestMapping(value = "updateRole",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil updateRole(HttpServletRequest request, String  role) {
         try {
@@ -130,7 +135,8 @@ public class RoleController {
      * @param roleId
      * @return
      */
-    @RequestMapping("deleteRole")
+    @ApiOperation("删除角色")
+    @RequestMapping(value = "deleteRole",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil deleteRole(HttpServletRequest request, Integer roleId) {
         try {
@@ -153,7 +159,8 @@ public class RoleController {
      * @param searchPream
      * @return
      */
-    @RequestMapping("findRoleList")
+    @ApiOperation("分页查询角色列表")
+    @RequestMapping(value = "findRoleList",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil findRoleList(HttpServletRequest request, String searchPream) {
         try {
@@ -184,7 +191,8 @@ public class RoleController {
      * @param request
      * @return
      */
-    @RequestMapping("findRoleAllList")
+    @ApiOperation("查询所有角色列表")
+    @RequestMapping(value = "findRoleAllList",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil findRoleAllList(HttpServletRequest request) {
         try {

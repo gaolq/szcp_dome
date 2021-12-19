@@ -59,10 +59,10 @@ public interface DbAdminUserMapper {
     /**
      * 通过登陆名称查询单个管理员用户
      * @param adminUserId
-     * @param username
+     * @param adminName
      * @return
      */
-  List<DbAdminUser> findAdminUserByAdminName(Integer adminUserId, String username);
+  List<DbAdminUser> findAdminUserByAdminName(Integer adminUserId, String adminName);
 
     /**
      * 初始化密码

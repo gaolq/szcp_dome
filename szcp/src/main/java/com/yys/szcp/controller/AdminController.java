@@ -18,6 +18,7 @@ import com.yys.szcp.utils.StringISNULLUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,11 +55,12 @@ public class AdminController {
      * @param request
      * @return
      */
+    @ApiOperation("登录接口")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "username",value = "账号",required = true),
             @ApiImplicitParam(name = "password",value = "密码",required = true)
     })
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     @JwtIgnore // 加此注解, 请求不做token验证
     @ResponseBody
     public ResultUtil login(String username, String password, HttpServletRequest request) {
@@ -95,7 +97,8 @@ public class AdminController {
      * @param request
      * @return
      */
-    @RequestMapping("/findAdminUserInfo")
+    @ApiOperation("获取用户信息接口")
+    @RequestMapping(value = "/findAdminUserInfo",method = RequestMethod.GET)
     @ResponseBody
     public ResultUtil findAdminUserInfo(HttpServletRequest request) {
         try {
@@ -117,10 +120,10 @@ public class AdminController {
     /**
      * 添加管理用户
      *
-     * @param request
      * @return
      */
-    @RequestMapping("/addAdminUser")
+    @ApiOperation("添加用户接口")
+    @RequestMapping(value = "/addAdminUser",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil addAdminUser(String adminUser) {
         try {
@@ -128,11 +131,11 @@ public class AdminController {
             //封装数据
             Map adminUser1 = (Map) JSONUtils.parse(adminUser);
             DbAdminUser adminUserMy = new DbAdminUser();
-            adminUserMy.setAdminName(StringISNULLUtil.mapToString(adminUser1.get("username")));
-            adminUserMy.setAdminFullname(StringISNULLUtil.mapToString(adminUser1.get("fullname")));
-            adminUserMy.setAdminPhone(StringISNULLUtil.mapToString(adminUser1.get("phone")));
+            adminUserMy.setAdminName(StringISNULLUtil.mapToString(adminUser1.get("adminName")));
+            adminUserMy.setAdminFullname(StringISNULLUtil.mapToString(adminUser1.get("adminFullname")));
+            adminUserMy.setAdminPhone(StringISNULLUtil.mapToString(adminUser1.get("adminPhone")));
 
-
+            adminUserMy.setOrganId(StringISNULLUtil.mapToInteger(adminUser1.get("organId")));
             adminUserMy.setRoleId(StringISNULLUtil.mapToInteger(adminUser1.get("roleId")));
 
             adminUserMy.setAdminPassword(MD5.MD5Pwd(adminUserMy.getAdminName(), "888888"));
@@ -156,7 +159,8 @@ public class AdminController {
      * @param request
      * @return
      */
-    @RequestMapping("/findAdminUserListByOrganId")
+    @ApiOperation("查询用户列表接口")
+    @RequestMapping(value = "/findAdminUserListByOrganId",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil findAdminUserListByOrganId(HttpServletRequest request, String searchPream) {
         try {
@@ -203,7 +207,8 @@ public class AdminController {
      * @return
      * @par后台管理am request
      */
-    @RequestMapping("/updateAdminUser")
+    @ApiOperation("更新用户接口")
+    @RequestMapping(value = "/updateAdminUser",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil updateAdminUser(HttpServletRequest request, String adminUser) {
         try {
@@ -211,20 +216,12 @@ public class AdminController {
             //封装数据
             Map adminUser1 = (Map) JSONUtils.parse(adminUser);
             DbAdminUser adminUserMy = new DbAdminUser();
-            adminUserMy.setAdminName(StringISNULLUtil.mapToString(adminUser1.get("username")));
-            adminUserMy.setAdminFullname(StringISNULLUtil.mapToString(adminUser1.get("fullname")));
-            adminUserMy.setAdminPhone(StringISNULLUtil.mapToString(adminUser1.get("phone")));
+            adminUserMy.setAdminName(StringISNULLUtil.mapToString(adminUser1.get("adminName")));
+            adminUserMy.setAdminFullname(StringISNULLUtil.mapToString(adminUser1.get("adminFullname")));
+            adminUserMy.setAdminPhone(StringISNULLUtil.mapToString(adminUser1.get("adminPhone")));
             adminUserMy.setOrganId(StringISNULLUtil.mapToInteger(adminUser1.get("organId")));
             adminUserMy.setRoleId(StringISNULLUtil.mapToInteger(adminUser1.get("roleId")));
             adminUserMy.setId(StringISNULLUtil.mapToInteger(adminUser1.get("id")));
-
-
-            //验证名称是否重复
-            List<DbAdminUser> adminUserList = adminService.findAdminUserByAdminName(adminUserMy.getId(), adminUserMy.getAdminName());
-            if (adminUserList != null && adminUserList.size() > 0) {
-                return ResultUtil.error("更新失败,名称重复!");
-            }
-
             adminService.updateAdminUser(adminUserMy);
             return ResultUtil.success("更新成功!");
         } catch (Exception e) {
@@ -240,7 +237,8 @@ public class AdminController {
      * @param request
      * @return
      */
-    @RequestMapping("/deleteAdminUser")
+    @ApiOperation("删除用户接口")
+    @RequestMapping(value = "/deleteAdminUser",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil deleteAdminUser(HttpServletRequest request, Integer adminUserId) {
         try {
@@ -262,9 +260,10 @@ public class AdminController {
      * @param request
      * @return
      */
-    @RequestMapping("/updatePasswordAdminUserInit")
+    @ApiOperation("初始化密码接口")
+    @RequestMapping(value = "/updatePasswordAdminUserInit",method = RequestMethod.POST)
     @ResponseBody
-    public ResultUtil updatePasswordAdminUserInit(HttpServletRequest request, Integer adminUserId) {
+    public ResultUtil updatePasswordAdminUserInit(Integer adminUserId) {
         try {
             DbAdminUser adminUser = adminService.findAdminUserById(adminUserId);
 
@@ -285,7 +284,8 @@ public class AdminController {
      * @param request
      * @return
      */
-    @RequestMapping("/updatePasswordAdminUser")
+    @ApiOperation("更新密码接口")
+    @RequestMapping(value = "/updatePasswordAdminUser",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil updatePasswordAdminUser(HttpServletRequest request, String adminUser) {
         try {
@@ -319,12 +319,12 @@ public class AdminController {
     /**
      * 根据id 查询管理员用户返回用户对象
      *
-     * @param request
      * @return
      */
-    @RequestMapping("/findAdminUserById")
+    @ApiOperation("根据用户ID查询用户接口")
+    @RequestMapping(value = "/findAdminUserById",method = RequestMethod.POST)
     @ResponseBody
-    public ResultUtil findAdminUserById(HttpServletRequest request, Integer adminUserId) {
+    public ResultUtil findAdminUserById(Integer adminUserId) {
 
         try {
             DbAdminUser adminUser = adminService.findAdminUserById(adminUserId);
@@ -341,7 +341,8 @@ public class AdminController {
      * @param request
      * @return
      */
-    @RequestMapping("/findAdminUserAllInfoById")
+    @ApiOperation("通过id查询单个管理员用户详细信息")
+    @RequestMapping(value = "/findAdminUserAllInfoById",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil findAdminUserAllInfoById(HttpServletRequest request, Integer adminUserId) {
 

@@ -14,6 +14,7 @@ import com.yys.szcp.utils.ResultUtil;
 import com.yys.szcp.utils.StringISNULLUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +49,9 @@ public class MenuController {
      * @param menu
      * @return
      */
+    @ApiOperation("添加菜单")
     @ApiImplicitParam(name = "menu",value = "菜单json字符串",required = true)
-    @RequestMapping(value = "addMenu",method = RequestMethod.GET)
+    @RequestMapping(value = "addMenu",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil addMenu(HttpServletRequest request, String menu) {
         try {
@@ -91,7 +93,8 @@ public class MenuController {
      * @param request
      * @return
      */
-    @RequestMapping("findMenuByMyRoleId")
+    @ApiOperation("通过当前用户角色id 得到所有的菜单")
+    @RequestMapping(value = "findMenuByMyRoleId",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil findMenuByMyRoleId(HttpServletRequest request) {
         try {
@@ -117,7 +120,8 @@ public class MenuController {
      * @param menu
      * @return
      */
-    @RequestMapping("updateMenu")
+    @ApiOperation("更新菜单")
+    @RequestMapping(value = "updateMenu",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil updateMenu(HttpServletRequest request, String  menu) {
         try {
@@ -152,7 +156,8 @@ public class MenuController {
      * @param menuId
      * @return
      */
-    @RequestMapping("deleteMenu")
+    @ApiOperation("删除菜单")
+    @RequestMapping(value = "deleteMenu",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil deleteMenu(HttpServletRequest request, Integer menuId) {
         try {
@@ -178,7 +183,8 @@ public class MenuController {
      * @param request
      * @return
      */
-    @RequestMapping("findAllIcon")
+    @ApiOperation("读取全部图标")
+    @RequestMapping(value = "findAllIcon",method = RequestMethod.GET)
     @ResponseBody
     public ResultUtil findAllIcon(HttpServletRequest request) {
         try {
@@ -195,7 +201,8 @@ public class MenuController {
      * @param roleId
      * @return
      */
-    @RequestMapping("findMenuByRoleId")
+    @ApiOperation("通过角色id 得到所有的菜单")
+    @RequestMapping(value = "findMenuByRoleId",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil findRoleMenuByRoleId(HttpServletRequest request, Integer roleId) {
         try {
@@ -217,7 +224,8 @@ public class MenuController {
      * @param request
      * @return
      */
-    @RequestMapping("addOrEditRoleMenuByIdArray")
+    @ApiOperation("修改或者添加角色菜单")
+    @RequestMapping(value = "addOrEditRoleMenuByIdArray",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil addOrEditRoleMenuByIdArray(HttpServletRequest request, String  idArray, Integer myRoleId) {
         try {

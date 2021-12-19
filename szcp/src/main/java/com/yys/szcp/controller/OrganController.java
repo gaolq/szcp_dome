@@ -10,11 +10,13 @@ import com.yys.szcp.utils.ResultUtil;
 import com.yys.szcp.utils.StringISNULLUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,8 +49,9 @@ public class OrganController {
      * @param organ
      * @return
      */
+    @ApiOperation("添加部门")
     @ApiImplicitParam(name = "organ",value = "组织集合json字符串",required = true)
-    @RequestMapping("addOrgan")
+    @RequestMapping(value = "addOrgan",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil addOrgan(HttpServletRequest request, String organ) {
         try {
@@ -61,9 +64,6 @@ public class OrganController {
             organMy.setOrganName(StringISNULLUtil.mapToString(organ1.get("organName")));
             organMy.setRemake(StringISNULLUtil.mapToString(organ1.get("organRemake")));
             organMy.setSorting(StringISNULLUtil.mapToInteger(organ1.get("sorting")));
-
-
-
            //判断名称是否重复
             List<DbOrgan> list=organService.findOrganByName(null,organMy.getParentId(),organMy.getOrganName());
             if(list!=null&& list.size()>0){
@@ -84,7 +84,8 @@ public class OrganController {
      * @param organId
      * @return
      */
-    @RequestMapping("findOrganById")
+    @ApiOperation("通过机构id 获取机构")
+    @RequestMapping(value = "findOrganById",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil findOrganById(HttpServletRequest request, Integer organId) {
         try {
@@ -103,7 +104,8 @@ public class OrganController {
      * @param organ
      * @return
      */
-    @RequestMapping("updateOrgan")
+    @ApiOperation("更新机构")
+    @RequestMapping(value = "updateOrgan",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil updateOrgan(HttpServletRequest request, String organ) {
         try {
@@ -138,7 +140,8 @@ public class OrganController {
      * @param organId
      * @return
      */
-    @RequestMapping("deleteOrgan")
+    @ApiOperation("删除机构")
+    @RequestMapping(value = "deleteOrgan",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil deleteOrgan(HttpServletRequest request, Integer organId) {
         try {
@@ -163,7 +166,8 @@ public class OrganController {
      * @param request
      * @return
      */
-    @RequestMapping("findOrganUserTree")
+    @ApiOperation("用户页面的机构树")
+    @RequestMapping(value = "findOrganUserTree",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil findOrganUserTree(HttpServletRequest request) {
         try {
@@ -210,7 +214,8 @@ public class OrganController {
      * @param request
      * @return
      */
-    @RequestMapping("findOrganTree")
+    @ApiOperation("得到某个机构下面一个机构树")
+    @RequestMapping(value = "findOrganTree",method = RequestMethod.POST)
     @ResponseBody
     public ResultUtil findOrganTreeById(HttpServletRequest request) {
         try {
