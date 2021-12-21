@@ -1,15 +1,21 @@
 package com.yys.szcp.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 
 /**
  * 产品信息表
  * @TableName machine_product
  */
+@TableName(value ="machine_product")
 public class MachineProduct implements Serializable {
     /**
      * 产品ID
      */
+    @TableId
     private String productId;
 
     /**
@@ -37,6 +43,7 @@ public class MachineProduct implements Serializable {
      */
     private String expent3;
 
+    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
     /**

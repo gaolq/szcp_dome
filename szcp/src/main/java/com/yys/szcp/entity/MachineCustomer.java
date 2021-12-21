@@ -1,5 +1,9 @@
 package com.yys.szcp.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -7,10 +11,12 @@ import java.util.Date;
  * 客户信息表
  * @TableName machine_customer
  */
+@TableName(value ="machine_customer")
 public class MachineCustomer implements Serializable {
     /**
      * 客户ID
      */
+    @TableId
     private String customerId;
 
     /**
@@ -48,6 +54,7 @@ public class MachineCustomer implements Serializable {
      */
     private Date createTime;
 
+    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
     /**

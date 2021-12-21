@@ -1,6 +1,9 @@
 package com.yys.szcp.entity;
 
-import io.swagger.annotations.ApiModel;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
@@ -10,10 +13,12 @@ import java.util.Date;
  * 设备信息
  * @TableName machine_equipment
  */
+@TableName(value ="machine_equipment")
 public class MachineEquipment implements Serializable {
     /**
      * 设备编号
      */
+    @TableId
     @ApiModelProperty(value = "设备编号",required = true,hidden = true)
     private String equipId;
 
@@ -82,7 +87,7 @@ public class MachineEquipment implements Serializable {
      */
     @ApiModelProperty(value = "绑定时间",required = false,hidden = true)
     private Date bindTime;
-
+    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
     /**
