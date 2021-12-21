@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yys.szcp.mapper.MachineAdvertMapper">
+
+    <resultMap id="BaseResultMap" type="com.yys.szcp.entity.MachineAdvert">
+            <id property="advertId" column="advert_id" jdbcType="VARCHAR"/>
+            <result property="loadUrl" column="load_url" jdbcType="VARCHAR"/>
+            <result property="startTime" column="start_time" jdbcType="TIMESTAMP"/>
+            <result property="endTime" column="end_time" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="create_time" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        advert_id,load_url,start_time,
+        end_time,create_time
+    </sql>
+</mapper>

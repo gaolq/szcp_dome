@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yys.szcp.mapper.MachineVersionMapper">
+
+    <resultMap id="BaseResultMap" type="com.yys.szcp.entity.MachineVersion">
+            <id property="versionId" column="version_id" jdbcType="INTEGER"/>
+            <result property="equipId" column="equip_id" jdbcType="VARCHAR"/>
+            <result property="versionNumber" column="version_number" jdbcType="VARCHAR"/>
+            <result property="equipUrl" column="equip_url" jdbcType="VARCHAR"/>
+            <result property="versionState" column="version_state" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        version_id,equip_id,version_number,
+        equip_url,version_state,create_time
+    </sql>
+</mapper>

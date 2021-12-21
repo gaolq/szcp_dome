@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yys.szcp.mapper.MachineCustomerMapper">
+
+    <resultMap id="BaseResultMap" type="com.yys.szcp.entity.MachineCustomer">
+            <id property="customerId" column="customer_id" jdbcType="VARCHAR"/>
+            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="customerType" column="customer_type" jdbcType="VARCHAR"/>
+            <result property="customerName" column="customer_name" jdbcType="VARCHAR"/>
+            <result property="customerSite" column="customer_site" jdbcType="VARCHAR"/>
+            <result property="telPhone" column="tel_phone" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        customer_id,user_name,password,
+        customer_type,customer_name,customer_site,
+        tel_phone,create_time
+    </sql>
+</mapper>

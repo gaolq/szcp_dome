@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yys.szcp.mapper.MachineGoodsMapper">
+
+    <resultMap id="BaseResultMap" type="com.yys.szcp.entity.MachineGoods">
+            <id property="goodsId" column="goods_id" jdbcType="VARCHAR"/>
+            <result property="equipId" column="equip_id" jdbcType="VARCHAR"/>
+            <result property="equipUnit" column="equip_unit" jdbcType="VARCHAR"/>
+            <result property="squareSize" column="square_size" jdbcType="INTEGER"/>
+            <result property="squarePosition" column="square_position" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="goodsDesc" column="goods_desc" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        goods_id,equip_id,equip_unit,
+        square_size,square_position,create_time,
+        goods_desc
+    </sql>
+</mapper>

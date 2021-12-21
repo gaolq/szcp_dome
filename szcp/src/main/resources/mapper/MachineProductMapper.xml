@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yys.szcp.mapper.MachineProductMapper">
+
+    <resultMap id="BaseResultMap" type="com.yys.szcp.entity.MachineProduct">
+            <id property="productId" column="product_id" jdbcType="VARCHAR"/>
+            <result property="goodsId" column="goods_id" jdbcType="VARCHAR"/>
+            <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+            <result property="expent1" column="expent1" jdbcType="VARCHAR"/>
+            <result property="expent2" column="expent2" jdbcType="VARCHAR"/>
+            <result property="expent3" column="expent3" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        product_id,goods_id,product_name,
+        expent1,expent2,expent3
+    </sql>
+</mapper>

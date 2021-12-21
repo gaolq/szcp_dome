@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yys.szcp.mapper.MachineEquipmentMapper">
+
+    <resultMap id="BaseResultMap" type="com.yys.szcp.entity.MachineEquipment">
+            <id property="equipId" column="equip_id" jdbcType="VARCHAR"/>
+            <result property="macAddress" column="mac_address" jdbcType="VARCHAR"/>
+            <result property="equipStatus" column="equip_status" jdbcType="INTEGER"/>
+            <result property="offTime" column="off_time" jdbcType="INTEGER"/>
+            <result property="onTime" column="on_time" jdbcType="INTEGER"/>
+            <result property="volumeSize" column="volume_size" jdbcType="INTEGER"/>
+            <result property="brightLimit" column="bright_limit" jdbcType="INTEGER"/>
+            <result property="temperatureLimit" column="temperature_limit" jdbcType="INTEGER"/>
+            <result property="customerId" column="customer_id" jdbcType="VARCHAR"/>
+            <result property="equipType" column="equip_type" jdbcType="INTEGER"/>
+            <result property="activeTime" column="active_time" jdbcType="TIMESTAMP"/>
+            <result property="bindTime" column="bind_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        equip_id,mac_address,equip_status,
+        off_time,on_time,volume_size,
+        bright_limit,temperature_limit,customer_id,
+        equip_type,active_time,bind_time
+    </sql>
+</mapper>
